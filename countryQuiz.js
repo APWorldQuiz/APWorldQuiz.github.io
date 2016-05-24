@@ -31,9 +31,9 @@
 
     function makeImage(name){
       return only.html({img: "", src: "images/"+name,
-                          css: {
-                            height: "200px",
-                          }})
+      css: {
+        height: "200px",
+      }})
     }
 
     function makeQuestionPage(question, callback){
@@ -51,7 +51,7 @@
           })
         })
         return only.html({
-          div: [button, answer]
+          div: [button, answer],
         })
       }
       function getAnswer(answer){
@@ -61,8 +61,12 @@
       return only.html({
         div: [
           {p: question.question},
-          {div: answers}
-        ]
+          {div: answers},
+        ],
+        css: {
+          margin: "0 auto",
+          "text-align": "center"
+        }
       })
     }
 
@@ -88,7 +92,56 @@
       function start(){
         only.setHtml(pages[0])
       }
+      function mode(array)
+      {
+        if(array.length == 0)
+        return null;
+        var modeMap = {};
+        var maxEl = array[0], maxCount = 1;
+        for(var i = 0; i < array.length; i++)
+        {
+          var el = array[i];
+          if(modeMap[el] == null)
+          modeMap[el] = 1;
+          else
+          modeMap[el]++;
+          if(modeMap[el] > maxCount)
+          {
+            maxEl = el;
+            maxCount = modeMap[el];
+          }
+        }
+        return maxEl;
+      }
+      function getExplanationPage(mode){
+        var name = "";
+        console.log(mode === "China");
+        switch(mode){
+          case "China":
+            name = "china.html";
+            break;
+          case "India":
+            name = "india.html";
+            break;
+          case "Rome":
+            name = "rome.html";
+            break;
+        }
+        var frame = only.html({iframe: "not found", src: name,
+          css: {
+            width: "100%",
+          }});
+        frame.addEventListener("load", function(){
+          frame.style.height = frame.contentWindow.document.body.scrollHeight + "px";
+        });
+        window.fr = frame;
+        return frame;
+      }
       function endGame(){
+        var finalResults = givenAnswers.map(function(answer){
+          return answer.result;
+        })
+        var result = mode(finalResults);
         only.setHtml({
           div:
           [{p: "Thanks for playing!"}]
@@ -105,6 +158,7 @@
               ]
             });
           }))
+          .concat([getExplanationPage(result)])
         });
       }
       return {
@@ -118,6 +172,19 @@
       runner.start();
     })
 
-    only.setHtml(startButton)
+    var startPage = only.html({
+      div: [
+        {h1: "Which Ancient Civilization Are You??"},
+        startButton
+      ],
+      css: {
+        width: "800px",
+        margin: "0 auto",
+        "padding-top": "100px"
+      },
+      class: "text-center"
+    })
+
+    only.setHtml(startPage);
   })
 })()
