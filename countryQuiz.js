@@ -34,17 +34,106 @@
             result: "India"
           }
         ]
+      },
+      {
+        question: "What kind of art do you most appreciate?",
+        answers: [
+          {
+            answer: makeText("Intricate calligraphy"),
+            result: "China"
+          },
+          {
+            answer: makeText("Realistic Marble Busts"),
+            result: "Rome"
+          },
+          {
+            answer: makeText("Carved Stone"),
+            result: "India"
+          }
+        ]
+      },
+      {
+        question: "What role does religion play in your everyday life?",
+        answers: [
+          {
+            answer: makeText("Who I vote for"),
+            result: "China"
+          },
+          {
+            answer: makeText("What media I consume"),
+            result: "Rome"
+          },
+          {
+            answer: makeText("Who I hang out with"),
+            result: "India"
+          }
+        ]
+      },
+      {
+        question: "What do you most look for in a leader?",
+        answers: [
+          {
+            answer: makeText("Emperor who is given divine right"),
+            result: "China"
+          },
+          {
+            answer: makeText("Emperor given legitimacy by powerful army"),
+            result: "Rome"
+          },
+          {
+            answer: makeText("Central government not as important as social rank"),
+            result: "India"
+          }
+        ]
+      },
+      {
+        question: "In your mind, how should those in government be selected?",
+        answers: [
+          {
+            answer: makeText("By a rigorous test of merit"),
+            result: "China"
+          },
+          {
+            answer: makeText("By family association and reputation"),
+            result: "Rome"
+          },
+          {
+            answer: makeText("By birth-given social caste"),
+            result: "India"
+          }
+        ]
       }
+      // {
+      //   question: "",
+      //   answers: [
+      //     {
+      //       answer: makeText(""),
+      //       result: "China"
+      //     },
+      //     {
+      //       answer: makeText(""),
+      //       result: "Rome"
+      //     },
+      //     {
+      //       answer: makeText(""),
+      //       result: "India"
+      //     }
+      //   ]
+      // }
     ]
 
     function makeText(text){
-      return only.html({p: text});
+      return only.html({p: text,
+        css: {
+          cursor: "pointer"
+        }});
     }
 
     function makeImage(name){
       return only.html({img: "", src: "images/"+name,
       css: {
         height: "200px",
+        cursor: "pointer"
       }})
     }
 
