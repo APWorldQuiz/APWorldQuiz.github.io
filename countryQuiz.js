@@ -39,15 +39,15 @@
         question: "What kind of art do you most appreciate?",
         answers: [
           {
-            answer: makeText("Intricate calligraphy"),
+            answer: makeCaptionImage("3a.jpg", "Intricate calligraphy"),
             result: "China"
           },
           {
-            answer: makeText("Realistic Marble Busts"),
+            answer: makeCaptionImage("3b.jpg", "Realistic Marble Busts"),
             result: "Rome"
           },
           {
-            answer: makeText("Detailed Pottery"),
+            answer: makeCaptionImage("3c.jpg", "Detailed Pottery"),
             result: "India"
           }
         ]
@@ -56,15 +56,15 @@
         question: "What role does religion play in your everyday life?",
         answers: [
           {
-            answer: makeText("Who I vote for"),
+            answer: makeCaptionImage("4a.jpg", "Who I vote for"),
             result: "China"
           },
           {
-            answer: makeText("What media I consume"),
+            answer: makeCaptionImage("4b.jpg", "What media I consume"),
             result: "Rome"
           },
           {
-            answer: makeText("Who I hang out with"),
+            answer: makeCaptionImage("4c.png", "Who I hang out with"),
             result: "India"
           }
         ]
@@ -73,15 +73,15 @@
         question: "What do you most look for in a leader?",
         answers: [
           {
-            answer: makeText("Emperor who is given divine right"),
+            answer: makeCaptionImage("5a.jpg", "Emperor who is given divine right"),
             result: "China"
           },
           {
-            answer: makeText("Emperor given legitimacy by powerful army"),
+            answer: makeCaptionImage("5b.jpg", "Emperor given legitimacy by powerful army"),
             result: "Rome"
           },
           {
-            answer: makeText("Central government not as important as social rank"),
+            answer: makeCaptionImage("5c.jpg", "Central government not as important as social rank"),
             result: "India"
           }
         ]
@@ -90,14 +90,14 @@
         question: "In your mind, how should those in government be selected?",
         answers: [
           {
-            answer: makeText("By a rigorous test of merit"),
+            answer: makeCaptionImage("6a.jpg", "By a rigorous test of merit"),
             result: "China"
           },
           {
-            answer: makeText("By family association and reputation"),
+            answer: makeCaptionImage("6b.jpg", "By family association and reputation"),
             result: "Rome"
           },
-          {
+        {
             answer: makeText("By birth-given social caste"),
             result: "India"
           }
@@ -141,15 +141,15 @@
         question: "What are you most likely to sell to faraway lands?",
         answers: [
           {
-            answer: makeText("Luxurious silk garments"),
+            answer: makeCaptionImage("7a.jpg", "Luxurious silk garments"),
             result: "China"
           },
           {
-            answer: makeText("Basic goods such as metals, carpets, and glass"),
+            answer: makeCaptionImage("7b.jpg", "Basic goods such as metals, carpets, and glass"),
             result: "Rome"
           },
           {
-            answer: makeText("Spices and cloths"),
+            answer: makeCaptionImage("7c.jpg", "Spices and cloths"),
             result: "India"
           }
         ]
@@ -183,7 +183,7 @@
     function makeImage(name){
       return only.html({img: "", src: "images/"+name,
       css: {
-        height: "200px",
+        height: "175px",
         cursor: "pointer"
       }})
     }
