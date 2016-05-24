@@ -5,7 +5,7 @@
         question: "Which agricultural product most interests you?",
         answers: [
           {
-            answer: makeImage("silkworms.jpg"),
+            answer: makeCaptionImage("silkworms.jpg", "Silk Worms"),
             result: "China"
           },
           {
@@ -137,6 +137,15 @@
       }})
     }
 
+    function makeCaptionImage(img, text){
+      return only.html({
+        div: [
+          makeImage(img),
+          makeText(text)
+        ]
+      })
+    }
+
     function makeQuestionPage(question, callback){
 
       var letters = "ABCDEFGHIJKLMNOP";
@@ -229,11 +238,12 @@
             break;
         }
         var frame = only.html({iframe: "not found", src: name,
+          frameBorder: "0",
           css: {
             width: "100%",
           }});
         frame.addEventListener("load", function(){
-          frame.style.height = frame.contentWindow.document.body.scrollHeight + "px";
+          frame.style.height = frame.contentWindow.document.body.scrollHeight + 500 + "px";
         });
         window.fr = frame;
         return frame;
@@ -245,7 +255,7 @@
         var result = mode(finalResults);
         only.setHtml({
           div:
-          [{p: "Thanks for playing!"}]
+          ([{p: "Thanks for playing!"}]
           .concat(givenAnswers.map(function(answer){
             return only.html({
               div: [
@@ -259,7 +269,11 @@
               ]
             });
           }))
-          .concat([getExplanationPage(result)])
+          .concat([getExplanationPage(result)])),
+          class: "text-center",
+          css: {
+            margin: "0 auto"
+          }
         });
       }
       return {
