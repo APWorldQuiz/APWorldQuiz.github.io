@@ -5,15 +5,15 @@
         question: "Which agricultural product most interests you?",
         answers: [
           {
-            answer: makeCaptionImage("silkworms.jpg", "Silk Worms"),
+            answer: makeCaptionImage("1a.jpg", "Silk Worms"),
             result: "China"
           },
           {
-            answer: makeText("Grapes"),
+            answer: makeCaptionImage("1b.jpg", "Grapes"),
             result: "Rome"
           },
           {
-            answer: makeText("Rice"),
+            answer: makeCaptionImage("1c.jpg", "Rice"),
             result: "India"
           }
         ]
@@ -22,15 +22,15 @@
         question: "What kind of house would you rather live in?",
         answers: [
           {
-            answer: makeText("Rammed earth"),
+            answer: makeCaptionImage("2a.jpg", "Rammed earth"),
             result: "China"
           },
           {
-            answer: makeText("Wooden"),
+            answer: makeCaptionImage("2b.jpg", "Wooden"),
             result: "Rome"
           },
           {
-            answer: makeText("Carved Stone"),
+            answer: makeCaptionImage("2c.jpg", "Carved Stone"),
             result: "India"
           }
         ]
@@ -47,7 +47,7 @@
             result: "Rome"
           },
           {
-            answer: makeText("Carved Stone"),
+            answer: makeText("Detailed Pottery"),
             result: "India"
           }
         ]
@@ -99,6 +99,57 @@
           },
           {
             answer: makeText("By birth-given social caste"),
+            result: "India"
+          }
+        ]
+      },
+      {
+        question: "What would most fairly determine someone’s rank in society?",
+        answers: [
+          {
+            answer: makeText("How much land they own"),
+            result: "China"
+          },
+          {
+            answer: makeText("Whether they belong to an aristocratic elite"),
+            result: "Rome"
+          },
+          {
+            answer: makeText("The social caste of their parents"),
+            result: "India"
+          }
+        ]
+      },
+      {
+        question: "To what extent is slavery acceptable?",
+        answers: [
+          {
+            answer: makeText("OK, as long as it's not the primary source of labor"),
+            result: "China"
+          },
+          {
+            answer: makeText("Completely tolerable to enslave conquered peoples"),
+            result: "Rome"
+          },
+          {
+            answer: makeText("It’s fine, but slaves should be treated in a humanitarian fashion"),
+            result: "India"
+          }
+        ]
+      },
+      {
+        question: "What are you most likely to sell to faraway lands?",
+        answers: [
+          {
+            answer: makeText("Luxurious silk garments"),
+            result: "China"
+          },
+          {
+            answer: makeText("Basic goods such as metals, carpets, and glass"),
+            result: "Rome"
+          },
+          {
+            answer: makeText("Spices and cloths"),
             result: "India"
           }
         ]
@@ -170,7 +221,7 @@
       var answers = question.answers.map(getAnswer);
       return only.html({
         div: [
-          {p: question.question},
+          {h1: question.question},
           {div: answers},
         ],
         css: {
@@ -255,21 +306,22 @@
         var result = mode(finalResults);
         only.setHtml({
           div:
-          ([{p: "Thanks for playing!"}]
+          [{p: "Thanks for playing!"},
+            getExplanationPage(result)]
           .concat(givenAnswers.map(function(answer){
             return only.html({
               div: [
                 {b: [
                   {p: "Q: " + answer.question},
                 ]},
-                {p: "given answer:"},
+                {p: "Given answer:"},
                 answer.answer,
                 {p: "Country:"},
                 {p: answer.result}
               ]
             });
-          }))
-          .concat([getExplanationPage(result)])),
+          })),
+          // .concat([getExplanationPage(result)])),
           class: "text-center",
           css: {
             margin: "0 auto"
