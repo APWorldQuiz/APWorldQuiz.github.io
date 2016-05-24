@@ -294,7 +294,7 @@
             width: "100%",
           }});
         frame.addEventListener("load", function(){
-          frame.style.height = frame.contentWindow.document.body.scrollHeight + 500 + "px";
+          frame.style.height = frame.contentWindow.document.body.scrollHeight + 100 + "px";
         });
         window.fr = frame;
         return frame;
