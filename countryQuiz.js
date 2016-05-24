@@ -2,32 +2,44 @@
   addEventListener("DOMContentLoaded", function(){
     questions = [
       {
-        question: "Which would you most want to farm?",
+        question: "Which agricultural product most interests you?",
         answers: [
           {
             answer: makeImage("silkworms.jpg"),
             result: "China"
           },
           {
-            answer: only.html({p: "B"}),
-            result: "Blaa"
+            answer: makeText("Grapes"),
+            result: "Rome"
+          },
+          {
+            answer: makeText("Rice"),
+            result: "India"
           }
         ]
       },
       {
-        question: "Which is your favorite number?",
+        question: "What kind of house would you rather live in?",
         answers: [
           {
-            answer: only.html({p: "hi"}),
+            answer: makeText("Rammed earth"),
             result: "China"
           },
           {
-            answer: only.html({p: "bye"}),
-            result: "Gupta"
+            answer: makeText("Wooden"),
+            result: "Rome"
+          },
+          {
+            answer: makeText("Carved Stone"),
+            result: "India"
           }
         ]
       }
     ]
+
+    function makeText(text){
+      return only.html({p: text});
+    }
 
     function makeImage(name){
       return only.html({img: "", src: "images/"+name,
@@ -42,8 +54,8 @@
       var currentLetter = 0;
       function makeNextAnswerButton(answer, result){
         var letter = letters[currentLetter++];
-        var button = only.html({button: letter});
-        button.addEventListener("click", function(){
+        // var button = only.html({button: letter});
+        answer.addEventListener("click", function(){
           callback({
             question: question.question,
             answer: answer,
@@ -51,7 +63,7 @@
           })
         })
         return only.html({
-          div: [button, answer],
+          div: [answer],
         })
       }
       function getAnswer(answer){
