@@ -3,23 +3,29 @@
     questions = [
       {
         question: "Which would you most want to farm?",
-        answers: {
-          right: makeImage("silkworms.jpg"),
-          wrong: [
-            only.html({p: "B"}),
-            only.html({p: "C"}),
-            only.html({p: "D"})
-          ]
-        }
+        answers: [
+          {
+            answer: makeImage("silkworms.jpg"),
+            result: "China"
+          },
+          {
+            answer: only.html({p: "B"}),
+            result: "Blaa"
+          }
+        ]
       },
       {
         question: "Which is your favorite number?",
-        answers: {
-          right: only.html({p: "1"}),
-          wrong: [
-            only.html({p: "2"})
-          ]
-        }
+        answers: [
+          {
+            answer: only.html({p: "hi"}),
+            result: "China"
+          },
+          {
+            answer: only.html({p: "bye"}),
+            result: "Gupta"
+          }
+        ]
       }
     ]
 
@@ -34,21 +40,24 @@
 
       var letters = "ABCDEFGHIJKLMNOP";
       var currentLetter = 0;
-      function makeNextAnswerButton(answer){
+      function makeNextAnswerButton(answer, result){
         var letter = letters[currentLetter++];
         var button = only.html({button: letter});
         button.addEventListener("click", function(){
           callback({
             question: question.question,
-            answer: answer
+            answer: answer,
+            result: result
           })
         })
         return only.html({
           div: [button, answer]
         })
       }
-      var answers = [makeNextAnswerButton(question.answers.right)]
-      .concat(question.answers.wrong.map(makeNextAnswerButton));
+      function getAnswer(answer){
+        return makeNextAnswerButton(answer.answer, answer.result);
+      }
+      var answers = question.answers.map(getAnswer);
       return only.html({
         div: [
           {p: question.question},
@@ -86,9 +95,13 @@
           .concat(givenAnswers.map(function(answer){
             return only.html({
               div: [
-                {p: "Q: " + answer.question},
+                {b: [
+                  {p: "Q: " + answer.question},
+                ]},
                 {p: "given answer:"},
-                answer.answer
+                answer.answer,
+                {p: "Country:"},
+                {p: answer.result}
               ]
             });
           }))
